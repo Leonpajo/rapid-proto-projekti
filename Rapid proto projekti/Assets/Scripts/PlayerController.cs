@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float gravity = -10f;
     [SerializeField] private float groundedGravity = -2f; // improvement for ground check
+
+    [Header("Interaction / Pickup")]
+    [SerializeField] private float pickupRange = 3f;
+    [SerializeField] private LayerMask pickupLayerMask = ~0; // what layers count as pickable, default = everything
+    [SerializeField] private string pickupTag = "Pickable"; // object must have this tag to be picked up
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -45,6 +50,7 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleJump();
         ApplyGravity();
+        HandlePickup();
     }
 
     private void HandleGroundCheck()
@@ -66,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
         transform.Rotate(Vector3.up * delta.x);
 
-        
+
         cameraPitch -= delta.y; // cant flip the character upside down
         cameraPitch = Mathf.Clamp(cameraPitch, -maxLookAngle, maxLookAngle);  // clamp so cant look too mu
         cameraTransform.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f); // moves camera
@@ -109,4 +115,28 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
-}
+
+    private void HandlePickup()
+    {
+        Keyboard kb = Keyboard.current;
+        if (kb == null || cameraTransform == null) return;
+
+        if (!kb.eKey.wasPressedThisFrame) return; // press E to pick up
+
+        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, pickupRange, pickupLayerMask))
+        {
+            if (hit.collider.CompareTag(pickupTag))
+            {
+                PickUp(hit.collider.gameObject);
+            }
+        }
+    }
+
+    private void PickUp(GameObject obj)
+    {
+        // swap Destroy for obj.SetActive(false) if you want to keep it around (e.g. to respawn or store in inventory)
+        Destroy(obj);
+    }
+}   
