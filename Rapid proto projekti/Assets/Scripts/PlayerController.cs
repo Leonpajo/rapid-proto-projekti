@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -25,7 +26,6 @@ public class PlayerController : MonoBehaviour
     [Header("Interaction / Pickup")]
     [SerializeField] private float pickupRange = 3f;
     [SerializeField] private LayerMask pickupLayerMask = ~0; // what layers count as pickable, default = everything
-    [SerializeField] private string pickupTag = "Pickable"; // object must have this tag to be picked up
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -39,8 +39,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start() // cursor hidden and doesnt exit screen
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
     }
 
     private void Update()
@@ -127,16 +127,22 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, pickupRange, pickupLayerMask))
         {
-            if (hit.collider.CompareTag(pickupTag))
+            Pickable pickable = hit.collider.GetComponent<Pickable>();
+            if (pickable != null)
             {
-                PickUp(hit.collider.gameObject);
+                PickUp(pickable);
             }
         }
     }
 
-    private void PickUp(GameObject obj)
+    private void PickUp(Pickable pickable)
     {
-        // swap Destroy for obj.SetActive(false) if you want to keep it around (e.g. to respawn or store in inventory)
-        Destroy(obj);
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.BookFound(pickable.bookID);
+        }
+
+        // swap Destroy for pickable.gameObject.SetActive(false) if you want to keep it around
+        Destroy(pickable.gameObject);
     }
-}   
+}

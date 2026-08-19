@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 4394373411446394382}
   - component: {fileID: 8788555336324299864}
   - component: {fileID: 8866799952274432469}
+  - component: {fileID: -5154495040506638498}
   m_Layer: 0
   m_Name: Earth book
   m_TagString: Untagged
@@ -303,6 +304,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.28518644, y: 0.08688907, z: 0.39126357}
   m_Center: {x: -0.004078999, y: 0.032633126, z: 0}
+--- !u!114 &-5154495040506638498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5217582237491072948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb84bb79c8c8414f97d1f72945fcf6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Pickable
+  bookID: 
 --- !u!1 &6766661475190736863
 GameObject:
   m_ObjectHideFlags: 0

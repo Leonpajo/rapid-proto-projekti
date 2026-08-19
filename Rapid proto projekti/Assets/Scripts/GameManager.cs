@@ -3,7 +3,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     public List<BookHUD> hudIcons;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public void BookFound(string bookID)
     {
@@ -12,14 +19,5 @@ public class GameManager : MonoBehaviour
             if (icon.bookID == bookID)
                 icon.SetFound();
         }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) BookFound("1");
-        if (Input.GetKeyDown(KeyCode.Alpha2)) BookFound("2");
-        if (Input.GetKeyDown(KeyCode.Alpha3)) BookFound("3");
-        if (Input.GetKeyDown(KeyCode.Alpha4)) BookFound("4");
-        if (Input.GetKeyDown(KeyCode.Alpha5)) BookFound("5");
     }
 }
