@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 384790694}
   - component: {fileID: 384790696}
   - component: {fileID: 384790695}
+  - component: {fileID: 384790697}
   m_Layer: 5
   m_Name: Kirja5
   m_TagString: Untagged
@@ -331,6 +332,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384790693}
   m_CullTransparentMesh: 1
+--- !u!114 &384790697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384790693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30c580749362154bba1350ad32a770f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookHUD
+  bookID: 5
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,6 +483,7 @@ GameObject:
   - component: {fileID: 689084584}
   - component: {fileID: 689084586}
   - component: {fileID: 689084585}
+  - component: {fileID: 689084587}
   m_Layer: 5
   m_Name: Kirja2
   m_TagString: Untagged
@@ -533,6 +548,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689084583}
   m_CullTransparentMesh: 1
+--- !u!114 &689084587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689084583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30c580749362154bba1350ad32a770f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookHUD
+  bookID: 2
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +701,7 @@ GameObject:
   - component: {fileID: 877722016}
   - component: {fileID: 877722018}
   - component: {fileID: 877722017}
+  - component: {fileID: 877722019}
   m_Layer: 5
   m_Name: Kirja3
   m_TagString: Untagged
@@ -737,6 +766,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877722015}
   m_CullTransparentMesh: 1
+--- !u!114 &877722019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877722015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30c580749362154bba1350ad32a770f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookHUD
+  bookID: 3
 --- !u!1 &914332372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,6 +1142,7 @@ GameObject:
   - component: {fileID: 1142275961}
   - component: {fileID: 1142275963}
   - component: {fileID: 1142275962}
+  - component: {fileID: 1142275964}
   m_Layer: 5
   m_Name: Kirja1
   m_TagString: Untagged
@@ -1164,6 +1207,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1142275960}
   m_CullTransparentMesh: 1
+--- !u!114 &1142275964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142275960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30c580749362154bba1350ad32a770f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookHUD
+  bookID: 1
 --- !u!1 &1152792491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,6 +1231,7 @@ GameObject:
   - component: {fileID: 1152792492}
   - component: {fileID: 1152792494}
   - component: {fileID: 1152792493}
+  - component: {fileID: 1152792495}
   m_Layer: 5
   m_Name: Kirja4
   m_TagString: Untagged
@@ -1239,6 +1296,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152792491}
   m_CullTransparentMesh: 1
+--- !u!114 &1152792495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152792491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30c580749362154bba1350ad32a770f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookHUD
+  bookID: 4
 --- !u!1001 &1654646794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1375,6 +1445,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2129432954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2129432956}
+  - component: {fileID: 2129432955}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2129432955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129432954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47fb7ef14f2c08d47aafeed17e9c8ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  hudIcons:
+  - {fileID: 1142275964}
+  - {fileID: 689084587}
+  - {fileID: 877722019}
+  - {fileID: 1152792495}
+  - {fileID: 384790697}
+--- !u!4 &2129432956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129432954}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1814.5355, y: -0.00002, z: 1601.9933}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1386,3 +1506,4 @@ SceneRoots:
   - {fileID: 960772130}
   - {fileID: 2070585007}
   - {fileID: 1654646794}
+  - {fileID: 2129432956}
