@@ -142,7 +142,11 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.BookFound(pickable.bookID);
         }
 
-        // swap Destroy for pickable.gameObject.SetActive(false) if you want to keep it around
+        if (pickable.foundSound != null)
+        {
+            AudioSource.PlayClipAtPoint(pickable.foundSound, pickable.transform.position);
+        }
+
         Destroy(pickable.gameObject);
     }
 }
