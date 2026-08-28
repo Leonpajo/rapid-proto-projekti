@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
     private float cameraPitch;
+    private bool controlsEnabled = true;
 
     private void Awake()
     {
@@ -45,14 +46,33 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!controlsEnabled) return;
+
         HandleGroundCheck();
         HandleMouseLook();
         HandleMovement();
         HandleJump();
         ApplyGravity();
         HandlePickup();
+        HandleCursorToggle();
     }
 
+    private void HandleCursorToggle()
+    {
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (UnityEngine.Cursor.lockState == CursorLockMode.Locked)
+            {
+                UnityEngine.Cursor.lockState = CursorLockMode.None;
+                UnityEngine.Cursor.visible = true;
+            }
+            else
+            {
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                UnityEngine.Cursor.visible = false;
+            }
+        }
+    }
     private void HandleGroundCheck()
     {
         isGrounded = controller.isGrounded;
@@ -65,6 +85,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMouseLook()
     {
+        if (UnityEngine.Cursor.lockState != CursorLockMode.Locked) return;
+
         Mouse mouse = Mouse.current;
         if (mouse == null || cameraTransform == null) return;
 
@@ -72,10 +94,9 @@ public class PlayerController : MonoBehaviour
 
         transform.Rotate(Vector3.up * delta.x);
 
-
-        cameraPitch -= delta.y; // cant flip the character upside down
-        cameraPitch = Mathf.Clamp(cameraPitch, -maxLookAngle, maxLookAngle);  // clamp so cant look too mu
-        cameraTransform.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f); // moves camera
+        cameraPitch -= delta.y;
+        cameraPitch = Mathf.Clamp(cameraPitch, -maxLookAngle, maxLookAngle);
+        cameraTransform.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
     }
 
     private void HandleMovement()
@@ -148,5 +169,11 @@ public class PlayerController : MonoBehaviour
         }
 
         Destroy(pickable.gameObject);
+    }
+    public void EndGame()
+    {
+        controlsEnabled = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
     }
 }
