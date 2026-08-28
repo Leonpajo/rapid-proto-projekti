@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 96320608684498179}
   - component: {fileID: 2969941377110675009}
   - component: {fileID: 4797694259822018710}
+  - component: {fileID: -8909772524744104482}
   m_Layer: 0
   m_Name: Fire book
   m_TagString: Pickable
@@ -227,6 +228,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pickable
   bookID: 3
   foundSound: {fileID: 0}
+--- !u!114 &-8909772524744104482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545586589637067176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e99536ed1b2c23499e319f964fd6971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatingBook
+  floatHeight: 0.2
+  floatSpeed: 1
 --- !u!1 &2563130144017043825
 GameObject:
   m_ObjectHideFlags: 0

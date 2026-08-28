@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 9133164180539010653}
   - component: {fileID: 4541245393372046133}
   - component: {fileID: 8020794482141111847}
+  - component: {fileID: -4555581905359641029}
   m_Layer: 0
   m_Name: Ice book
   m_TagString: Pickable
@@ -319,6 +320,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pickable
   bookID: 4
   foundSound: {fileID: 0}
+--- !u!114 &-4555581905359641029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115394560388204508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e99536ed1b2c23499e319f964fd6971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatingBook
+  floatHeight: 0.2
+  floatSpeed: 1
 --- !u!1 &7876852964779946965
 GameObject:
   m_ObjectHideFlags: 0

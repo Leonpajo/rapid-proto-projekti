@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 7402527448343941235}
   - component: {fileID: 2650151227318523032}
   - component: {fileID: 3971306485685938605}
+  - component: {fileID: 7791308913899185804}
   m_Layer: 0
   m_Name: Necromancy book
   m_TagString: Untagged
@@ -318,6 +319,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pickable
   bookID: 5
   foundSound: {fileID: 0}
+--- !u!114 &7791308913899185804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2840964706116870865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e99536ed1b2c23499e319f964fd6971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatingBook
+  floatHeight: 0.2
+  floatSpeed: 1
 --- !u!1 &2922210154723414330
 GameObject:
   m_ObjectHideFlags: 0
