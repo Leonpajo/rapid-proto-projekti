@@ -23,6 +23,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravity = -10f;
     [SerializeField] private float groundedGravity = -2f; // improvement for ground check
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource footstepAudioSource;
+    [SerializeField] private AudioClip footstepSound;
+    [SerializeField] private float walkStepInterval = 0.5f;
+    [SerializeField] private float sprintStepInterval = 0.3f;
+    [SerializeField] private AudioClip jumpSound;
+
     [Header("Interaction / Pickup")]
     [SerializeField] private float pickupRange = 3f;
     [SerializeField] private LayerMask pickupLayerMask = ~0; // what layers count as pickable, default = everything
@@ -32,10 +39,18 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private float cameraPitch;
     private bool controlsEnabled = true;
+    private float stepTimer;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     private void Start() // cursor hidden and doesnt exit screen
@@ -114,11 +129,36 @@ public class PlayerController : MonoBehaviour
 
         Vector3 inputDir = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if (inputDir.magnitude >= 0.1f)
+        if (inputDir.magnitude >= 0.1f && isGrounded)
         {
             Vector3 moveDir = transform.TransformDirection(inputDir);
-            float currentSpeed = kb.leftShiftKey.isPressed ? sprintSpeed : walkSpeed;
+
+            bool isSprinting = kb.leftShiftKey.isPressed;
+            float currentSpeed = isSprinting ? sprintSpeed : walkSpeed;
+
             controller.Move(moveDir * currentSpeed * Time.deltaTime);
+
+            HandleFootsteps(isSprinting);
+        }
+        else
+        {
+            stepTimer = 0f;
+        }
+    }
+
+    private void HandleFootsteps(bool isSprinting)
+    {
+        if (footstepAudioSource == null || footstepSound == null)
+            return;
+
+        float stepInterval = isSprinting ? sprintStepInterval : walkStepInterval;
+
+        stepTimer += Time.deltaTime;
+
+        if (stepTimer >= stepInterval)
+        {
+            footstepAudioSource.PlayOneShot(footstepSound);
+            stepTimer = 0f;
         }
     }
 
@@ -126,8 +166,16 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            // v = sqrt(h * -2 * g), AI 
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+            if (jumpSound != null)
+            {
+                audioSource.PlayOneShot(jumpSound, 1f);
+            }
+            else
+            {
+                Debug.LogWarning("Jump Sound ei ole asetettu!");
+            }
         }
     }
 
