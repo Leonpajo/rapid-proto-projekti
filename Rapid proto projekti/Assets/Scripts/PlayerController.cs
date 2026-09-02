@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource footstepAudioSource;
     [SerializeField] private AudioClip footstepSound;
-    [SerializeField] private float walkStepInterval = 0.5f;
+    [SerializeField] private float footstepInterval = 0.5f;
     [SerializeField] private float sprintStepInterval = 0.3f;
     [SerializeField] private AudioClip jumpSound;
 
@@ -129,35 +129,36 @@ public class PlayerController : MonoBehaviour
 
         Vector3 inputDir = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if (inputDir.magnitude >= 0.1f && isGrounded)
+        if (inputDir.magnitude >= 0.1f)
         {
             Vector3 moveDir = transform.TransformDirection(inputDir);
 
-            bool isSprinting = kb.leftShiftKey.isPressed;
-            float currentSpeed = isSprinting ? sprintSpeed : walkSpeed;
+            float currentSpeed = kb.leftShiftKey.isPressed
+                ? sprintSpeed
+                : walkSpeed;
 
+            // Pelaaja liikkuu myös ilmassa
             controller.Move(moveDir * currentSpeed * Time.deltaTime);
 
-            HandleFootsteps(isSprinting);
+            // Askelääni vain maassa
+            if (isGrounded)
+            {
+                stepTimer -= Time.deltaTime;
+
+                if (stepTimer <= 0f)
+                {
+                    if (footstepSound != null)
+                    {
+                        audioSource.PlayOneShot(footstepSound);
+                    }
+
+                    stepTimer = footstepInterval;
+                }
+            }
         }
         else
         {
-            stepTimer = 0f;
-        }
-    }
-
-    private void HandleFootsteps(bool isSprinting)
-    {
-        if (footstepAudioSource == null || footstepSound == null)
-            return;
-
-        float stepInterval = isSprinting ? sprintStepInterval : walkStepInterval;
-
-        stepTimer += Time.deltaTime;
-
-        if (stepTimer >= stepInterval)
-        {
-            footstepAudioSource.PlayOneShot(footstepSound);
+            // Pelaaja ei liiku
             stepTimer = 0f;
         }
     }
