@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pickable
   bookID: 4
-  foundSound: {fileID: 0}
+  foundSound: {fileID: 8300000, guid: e97ed416b816d784eb70419b77970c97, type: 3}
 --- !u!114 &-4555581905359641029
 MonoBehaviour:
   m_ObjectHideFlags: 0

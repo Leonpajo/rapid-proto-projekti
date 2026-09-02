@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [Header("Interaction / Pickup")]
     [SerializeField] private float pickupRange = 3f;
     [SerializeField] private LayerMask pickupLayerMask = ~0; // what layers count as pickable, default = everything
+    [SerializeField] private GameObject interactText;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -191,17 +192,19 @@ public class PlayerController : MonoBehaviour
         Keyboard kb = Keyboard.current;
         if (kb == null || cameraTransform == null) return;
 
-        if (!kb.eKey.wasPressedThisFrame) return; // press E to pick up
-
         Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+        bool lookingAtPickable = Physics.Raycast(ray, out RaycastHit hit, pickupRange, pickupLayerMask)
+                                  && hit.collider.GetComponent<Pickable>() != null;
 
-        if (Physics.Raycast(ray, out RaycastHit hit, pickupRange, pickupLayerMask))
+        if (interactText != null)
+        {
+            interactText.SetActive(lookingAtPickable);
+        }
+
+        if (lookingAtPickable && kb.eKey.wasPressedThisFrame)
         {
             Pickable pickable = hit.collider.GetComponent<Pickable>();
-            if (pickable != null)
-            {
-                PickUp(pickable);
-            }
+            PickUp(pickable);
         }
     }
 
