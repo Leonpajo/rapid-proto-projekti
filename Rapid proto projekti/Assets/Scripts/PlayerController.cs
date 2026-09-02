@@ -227,5 +227,10 @@ public class PlayerController : MonoBehaviour
         controlsEnabled = false;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible = true;
+
+        if (interactText != null)
+        {
+            interactText.SetActive(false);
+        }
     }
 }
